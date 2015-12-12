@@ -307,9 +307,9 @@ class CornersProblem(search.SearchProblem):
         """
         "*** YOUR CODE HERE ***"
         "OUTPUT format: (5, 5)"
-        self.startState = (self.startingPosition, False)
-        print "top corner: ", self.corners[3]
-        return self.startState
+        # self.startState = (self.startingPosition, False)
+        # print "top corner: ", self.corners[3]
+        return self.startingPosition
 
     def isGoalState(self, state):
         """
