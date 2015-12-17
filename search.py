@@ -75,7 +75,7 @@ def tinyMazeSearch(problem):
 def depthFirstSearch(problem):
     fringe = util.Stack()
     fringe.push( (problem.getStartState(), []) )
-    visited = set()
+    visited = []
     
     while not fringe.isEmpty():
         currentCoor, listActions = fringe.pop()
@@ -84,7 +84,7 @@ def depthFirstSearch(problem):
                 return listActions + [action]
             elif coor not in visited:
                 fringe.push( (coor, listActions + [action]) )
-                visited.add(coor)
+                visited.append(coor)
             else:
                 pass
     return 0
@@ -92,7 +92,8 @@ def depthFirstSearch(problem):
 def breadthFirstSearch(problem):
     fringe = util.Queue()
     fringe.push( (problem.getStartState(), []) )
-    visited = set()
+    visited = []
+    # visitedSet = set()
     
     while not fringe.isEmpty():
         currentCoor, listActions = fringe.pop()
@@ -101,7 +102,7 @@ def breadthFirstSearch(problem):
                 return listActions + [action]
             elif coor not in visited:
                 fringe.push( (coor, listActions + [action]) )
-                visited.add(coor)
+                visited.append(coor)
             else:
                 pass
     return 0
@@ -109,7 +110,7 @@ def breadthFirstSearch(problem):
 def uniformCostSearch(problem):
     fringe = util.PriorityQueue()
     fringe.push( (problem.getStartState(), []), 0 )
-    visited = set()
+    visited = []
     
     while not fringe.isEmpty():
         currentCoor, listActions = fringe.pop()
@@ -119,7 +120,7 @@ def uniformCostSearch(problem):
                 return newListActions
             elif coor not in visited:
                 fringe.push( (coor, newListActions), problem.getCostOfActions(newListActions) )
-                visited.add(coor)
+                visited.append(coor)
             else:
                 pass
     return 0
@@ -134,7 +135,7 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     fringe = util.PriorityQueue()
     fringe.push( (problem.getStartState(), []), 0 )
-    visited = set()
+    visited = []
     
     while not fringe.isEmpty():
         currentCoor, listActions = fringe.pop()
@@ -145,7 +146,7 @@ def aStarSearch(problem, heuristic=nullHeuristic):
             elif coor not in visited:
                 fringe.push( (coor, newListActions), \
                 problem.getCostOfActions(newListActions) + heuristic(coor,problem))
-                visited.add(coor)
+                visited.append(coor)
             else:
                 pass
     return 0
