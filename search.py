@@ -99,6 +99,7 @@ def breadthFirstSearch(problem):
         currentCoor, listActions = fringe.pop()
         for coor, action, cost in problem.getSuccessors(currentCoor):
             if problem.isGoalState(coor):
+                # print "i found it!"
                 return listActions + [action]
             elif coor not in visited:
                 fringe.push( (coor, listActions + [action]) )
@@ -136,17 +137,23 @@ def aStarSearch(problem, heuristic=nullHeuristic):
     fringe = util.PriorityQueue()
     fringe.push( (problem.getStartState(), []), 0 )
     visited = []
-    
+    # visitedSet = set()
     while not fringe.isEmpty():
         currentCoor, listActions = fringe.pop()
         for coor, action, cost in problem.getSuccessors(currentCoor):
             newListActions = listActions + [action]
             if problem.isGoalState(coor):
+                # print "length of visited list: ", len(visited)
+                # print "visited: ", visited
+                # print "length of visited set: ", len(visitedSet)
                 return newListActions
             elif coor not in visited:
                 fringe.push( (coor, newListActions), \
                 problem.getCostOfActions(newListActions) + heuristic(coor,problem))
                 visited.append(coor)
+                # visitedSet.add(coor[0])
+                # print "coor[0]: ", coor[0]
+                # print "coor: ", coor
             else:
                 pass
     return 0
