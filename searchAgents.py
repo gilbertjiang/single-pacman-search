@@ -348,8 +348,12 @@ class CornersProblem(search.SearchProblem):
 
             if not self.walls[nextx][nexty]:
                 if (nextx, nexty) in self.corners and (nextx, nexty) not in visitedCorner:
+                    
                     newVisitedCorner = set(visitedCorner)
+                    print "--before adding visitedCorner: ", newVisitedCorner
                     newVisitedCorner.add((nextx, nexty))
+                    print "--after adding visitedCorner: ", newVisitedCorner
+                    
                 else:
                     newVisitedCorner = set(visitedCorner)
 
@@ -363,7 +367,7 @@ class CornersProblem(search.SearchProblem):
         if state[0] not in self._visited:
             self._visited[state[0]] = True
             self._visitedlist.append(state[0])
-
+        # print "--successors: ", successors
         return successors
 
     def getCostOfActions(self, actions):

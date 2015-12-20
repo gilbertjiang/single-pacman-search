@@ -94,19 +94,65 @@ def breadthFirstSearch(problem):
     fringe.push( (problem.getStartState(), []) )
     visited = []
     # visitedSet = set()
-    
+
     while not fringe.isEmpty():
         currentCoor, listActions = fringe.pop()
+        # print currentCoor
         for coor, action, cost in problem.getSuccessors(currentCoor):
+            # xy = tuple()
+            # grid = tuple()
+            # xy, grid = coor
+            # print "xy", xy
+            # print "--coor", coor
+            # print "xy ", xy
+            # print "grid ", grid
             if problem.isGoalState(coor):
-                # print "i found it!"
+                print "*****i found it!"
+                # print "length of visiited: ", len(visited)
                 return listActions + [action]
             elif coor not in visited:
-                fringe.push( (coor, listActions + [action]) )
+                fringe.push( (coor, listActions + [action]))
                 visited.append(coor)
+                print listActions + [action]
             else:
                 pass
     return 0
+
+# def breadthFirstSearch(problem):
+#     fringe = util.Queue()
+#     fringe.push( (problem.getStartState(), []) )
+#     visited = []
+#     visitedSet = set()
+#     xy = tuple()
+#     grid = tuple()
+#     while not fringe.isEmpty():
+#         currentNode, listActions = fringe.pop()
+#         # print currentCoor
+#         currentCoor, visitedCorners = currentNode
+#         # print "currentNode: ", currentNode
+#         # print "visitedCorners: ", visitedCorners
+#         for coor, action, cost in problem.getSuccessors(currentNode):
+#             # xy = tuple()
+#             # grid = tuple()
+#             # print "xy: ", xy
+#             # print "grid: ", grid
+#             xy, grid = coor
+#             # print "xy", xy
+#             # print "coor", coor
+#             # print "xy ", xy
+#             # print "grid ", grid
+#             if problem.isGoalState(coor):
+#                 print "*****i found it!"
+#                 # print "actions: ", listActions + [action]
+#                 return listActions + [action]
+#             elif xy not in visitedSet:
+#                 fringe.push( (coor, listActions + [action]))
+#                 visited.append(coor)
+#                 visitedSet.add(xy)
+#                 # print listActions + [action]
+#             else:
+#                 pass
+#     return 0
 
 def uniformCostSearch(problem):
     fringe = util.PriorityQueue()
